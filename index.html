@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apenas um TestEEE</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+    <script>
+        async function test() {
+            const sess = new onnx.InferenceSession()
+            await sess.loadModel('2_MLPRegressor.onnx')
+            const input = new onnx.Tensorflow( new Float32Array(32*32), 'float32', [1,1,28,28] )
+            const outputMap = await sess.run([input])
+            const outputTensor = outputMap.values().next().value
+            console.log(`Output tensor: ${outputTensor.data}`)
+        }
+        test()
+    </script>
+
+
+</body>
+</html>
