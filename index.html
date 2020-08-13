@@ -9,7 +9,7 @@
     <script>
         async function test() {
             const sess = new onnx.InferenceSession()
-            await sess.loadModel('2_MLPRegressor.onnx')
+            await sess.loadModel('https://lucasverdade.github.io/onnx-repo/2_MLPRegressor.onnx')
             const input = new onnx.Tensorflow( new Float32Array(32*32), 'float32', [1,1,28,28] )
             const outputMap = await sess.run([input])
             const outputTensor = outputMap.values().next().value
